@@ -1,6 +1,4 @@
 "use client"
-import Image from 'next/image'
-import Header from './components/Header'
 import AddTodo from './components/AddTodo'
 import { useEffect, useState } from 'react'
 import { TodoItemT } from '@/types/types'
@@ -48,25 +46,33 @@ export default function Home() {
   }
 
   return (
-    <main className='flex flex-col items-center bg-white'>
-      <div className='p-10'>
-        <h1 className='text-center'>Todos</h1>
-        <div className='flex flex-col gap-2'>
-          { todoItems &&
-            todoItems.map((todoItem) => {
-              return(
-                <TodoRow 
-                  key={todoItem.id} 
-                  todoItem={todoItem} 
-                  toggleCompleted={toggleCompleted}
-                  deleteTodo={deleteTodo} 
-                />
-              )
-            })
-          }
+    <main className='flex flex-col items-center'>
+      <div className='bg-white mt-5 rounded'>
+        <div className='p-5'>
+          <h1 className='text-2xl font-semibold'>Todos</h1>
+          <div className='flex flex-col gap-2 mt-5 w-full sm:w-[28rem]'>
+            { todoItems &&
+              todoItems.map((todoItem) => {
+                return(
+                  <TodoRow 
+                    key={todoItem.id} 
+                    todoItem={todoItem} 
+                    toggleCompleted={toggleCompleted}
+                    deleteTodo={deleteTodo} 
+                  />
+                )
+              })
+            }
+            {
+              !todoItems.length && <div className='text-center'>No tasks, no worries, just endless possibilities</div>
+            }
+          </div>
+        </div>
+        <div className='w-full h-[1px] bg-[#F2F2F2]'></div>
+        <div className='p-3 flex items-center justify-center'>
+          <AddTodo addTodo={addTodo} />
         </div>
       </div>
-      <AddTodo addTodo={addTodo} />
     </main>
   )
 }

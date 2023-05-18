@@ -19,7 +19,9 @@ function Checkbox({defaultCheckedValue, onCheckedChange, children}: CheckboxProp
     return (
         <div className="flex items-center gap-3" onClick={handleCheckedChange}>
             <div className={`w-5 h-5 rounded-full ${!isChecked && `border border-border`} ${isChecked && `bg-accent`}`}></div>
-            {children}
+            <div className="w-[15rem] sm:w-[22.5rem] line-clamp-1">
+                {children}
+            </div>
         </div>
     );
 }

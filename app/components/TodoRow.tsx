@@ -10,13 +10,13 @@ interface TodoRowPropsT{
 
 function TodoRow({todoItem, toggleCompleted, deleteTodo}: TodoRowPropsT) {
     return (
-        <div className="flex justify-between items-center gap-4 group w-72 h-8">
-            <div className="text-xl">
+        <div className="flex justify-between items-center gap-4 group w-full h-8">
+            <div className="text-lg sm:text-xl">
                 <Checkbox defaultCheckedValue={todoItem.isCompleted} onCheckedChange={() => toggleCompleted(todoItem.id)}>
                     {todoItem.title}
                 </Checkbox>
             </div>
-            <div className="block sm:hidden group-hover:block">
+            <div className="block min-[500px]:hidden group-hover:block">
                 <Button variant="small" onButtonClick={() => deleteTodo(todoItem.id)} >
                     X
                 </Button>
