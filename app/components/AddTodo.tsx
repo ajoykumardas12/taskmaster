@@ -13,22 +13,21 @@ function AddTodo({addTodo}: AddTodoPropsT) {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (inputRef.current) {
-            const newTodoTitle = inputRef.current.value;
-            console.log(uuidv4());
-            console.log("test");
-            
-            const newTodo = {
-                "id": uuidv4(),
-                "title": newTodoTitle,
-                "isCompleted": false
-            }
-            console.log("adding new todo", newTodo);
-
-            // 
-            addTodo(newTodo);
-
-            //set input blank
-            inputRef.current.value = "";            
+            if(inputRef.current.value){
+                const newTodoTitle = inputRef.current.value;
+                
+                const newTodo = {
+                    "id": uuidv4(),
+                    "title": newTodoTitle,
+                    "isCompleted": false
+                }
+    
+                // Add todo
+                addTodo(newTodo);
+    
+                // Set input blank
+                inputRef.current.value = ""; 
+            }           
         }
         
     }
