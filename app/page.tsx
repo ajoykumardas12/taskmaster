@@ -55,18 +55,20 @@ export default function Home() {
     <main className='flex flex-col items-center bg-white'>
       <div className='p-10'>
         <h1>Todo</h1>
-        { todoItems &&
-          todoItems.map((todoItem) => {
-            return(
-              <TodoRow 
-                key={todoItem.id} 
-                todoItem={todoItem} 
-                toggleCompleted={toggleCompleted}
-                deleteTodo={deleteTodo} 
-              />
-            )
-          })
-        }
+        <div className='flex flex-col gap-2'>
+          { todoItems &&
+            todoItems.map((todoItem) => {
+              return(
+                <TodoRow 
+                  key={todoItem.id} 
+                  todoItem={todoItem} 
+                  toggleCompleted={toggleCompleted}
+                  deleteTodo={deleteTodo} 
+                />
+              )
+            })
+          }
+        </div>
       </div>
       <AddTodo addTodo={addTodo} />
     </main>

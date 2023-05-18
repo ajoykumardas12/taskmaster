@@ -2,6 +2,7 @@
 import { TodoItemT } from "@/types/types";
 import { FormEvent, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Button from "./Button";
 
 interface AddTodoPropsT{
     addTodo: (newTodo: TodoItemT) => void
@@ -43,12 +44,9 @@ function AddTodo({addTodo}: AddTodoPropsT) {
                 className="bg-inputBg p-2"
                 ref={inputRef}
             />
-            <button
-            type="submit"
-                className="bg-accent text-white px-3 py-2 rounded-lg"
-            >
+            <Button variant="big" onButtonClick={() => handleSubmit} >
                 Add
-            </button>
+            </Button>
         </form>
     );
 }

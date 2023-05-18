@@ -5,11 +5,30 @@ interface ButtonPropsT{
 }
 
 function Button({variant, onButtonClick, children}: ButtonPropsT) {
-    return (
-        <button onClick={() =>onButtonClick()}>
-            {children}
-        </button>
-    );
+    if(variant === "big"){
+        return (
+            <button 
+                className="bg-accent px-8 py-3 flex items-center justify-center text-white rounded-lg "
+                onClick={() =>onButtonClick()}
+            >
+                {children}
+            </button>
+        )
+    }else if(variant === "small"){
+        return (
+            <button 
+                className="bg-accent px-3 py-1 flex items-center justify-center text-white rounded-lg "
+                onClick={() =>onButtonClick()}
+            >
+                {children}
+            </button>
+        )
+    }else{
+        return (
+            <div>Invalid button variant</div>
+        )
+    }
+
 }
 
 export default Button;

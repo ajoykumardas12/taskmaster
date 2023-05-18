@@ -9,7 +9,7 @@ interface TodoRowPropsT{
 
 function TodoRow({todoItem, toggleCompleted, deleteTodo}: TodoRowPropsT) {
     return (
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between items-center gap-4">
             <div>
                 {todoItem.title}
             </div>
