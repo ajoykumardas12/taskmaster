@@ -1,11 +1,56 @@
-function AddTodo() {
+"use client"
+import { TodoItemT } from "@/types/types";
+import { FormEvent, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+interface AddTodoPropsT{
+    addTodo: (newTodo: TodoItemT) => void
+}
+
+function AddTodo({addTodo}: AddTodoPropsT) {
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (inputRef.current) {
+            const newTodoTitle = inputRef.current.value;
+            console.log(uuidv4());
+            console.log("test");
+            
+            const newTodo = {
+                "id": uuidv4(),
+                "title": newTodoTitle,
+                "isCompleted": false
+            }
+            console.log("adding new todo", newTodo);
+
+            // 
+            addTodo(newTodo);
+
+            //set input blank
+            inputRef.current.value = "";            
+        }
+        
+    }
+
     return (
-        <div>
-            <input type="text" name="newTodo" id="" />
-            <button>
+        <form className="flex gap-2" onSubmit={handleSubmit}>
+            <input 
+                type="text" 
+                name="newTodo" 
+                id="" 
+                placeholder="Add task here..."
+                autoComplete="off"
+                className="bg-inputBg p-2"
+                ref={inputRef}
+            />
+            <button
+            type="submit"
+                className="bg-accent text-white px-3 py-2 rounded-lg"
+            >
                 Add
             </button>
-        </div>
+        </form>
     );
 }
 
