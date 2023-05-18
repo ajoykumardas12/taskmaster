@@ -16,7 +16,8 @@ module.exports = {
         primaryBg: "#FFFBF4",
         inputBg: "#F0F1F1",
         accent: "#4EB570",
-        
+        border: "#CCCCCC",
+
       }
     },
   },

@@ -26,21 +26,17 @@ export default function Home() {
   const addTodo = (newTodo: TodoItemT) => {
     const newTodos = [...todoItems];
     newTodos.push(newTodo);
-    console.log("adding todo", newTodos);
 
     updateTodos(newTodos);
   }
 
   const deleteTodo = (id: string) => {
-    console.log("deleting todo, id: ", id);
-    
     const newTodos = todoItems.filter(todoItem => todoItem.id != id);
 
     updateTodos(newTodos);
   }
 
   const toggleCompleted = (id: string) => {
-    console.log("toggling todo, id: ", id);
     const newTodos = todoItems.map(todoItem => {
       if(todoItem.id === id){
         return {...todoItem, isCompleted: !todoItem.isCompleted}
@@ -54,7 +50,7 @@ export default function Home() {
   return (
     <main className='flex flex-col items-center bg-white'>
       <div className='p-10'>
-        <h1>Todo</h1>
+        <h1 className='text-center'>Todos</h1>
         <div className='flex flex-col gap-2'>
           { todoItems &&
             todoItems.map((todoItem) => {
