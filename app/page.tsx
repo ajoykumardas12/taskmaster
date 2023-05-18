@@ -4,6 +4,7 @@ import Header from './components/Header'
 import AddTodo from './components/AddTodo'
 import { useEffect, useState } from 'react'
 import { TodoItemT } from '@/types/types'
+import TodoRow from './components/TodoRow'
 
 export default function Home() {
   const [todoItems, setTodoItems] = useState<TodoItemT[]>([]);
@@ -18,15 +19,35 @@ export default function Home() {
   }, [])
 
   const updateTodos = (newTodos: TodoItemT[]) => {
-    setTodoItems(newTodos);
     localStorage.setItem("taskmasterTodos", JSON.stringify(newTodos));
+    setTodoItems(newTodos);
   }
 
   const addTodo = (newTodo: TodoItemT) => {
-    const newTodos = todoItems;
+    const newTodos = [...todoItems];
     newTodos.push(newTodo);
     console.log("adding todo", newTodos);
 
+    updateTodos(newTodos);
+  }
+
+  const deleteTodo = (id: string) => {
+    console.log("deleting todo, id: ", id);
+    
+    const newTodos = todoItems.filter(todoItem => todoItem.id != id);
+
+    updateTodos(newTodos);
+  }
+
+  const toggleCompleted = (id: string) => {
+    console.log("toggling todo, id: ", id);
+    const newTodos = todoItems.map(todoItem => {
+      if(todoItem.id === id){
+        return {...todoItem, isCompleted: !todoItem.isCompleted}
+      }
+      return todoItem;
+    });
+    
     updateTodos(newTodos);
   }
 
@@ -34,19 +55,20 @@ export default function Home() {
     <main className='flex flex-col items-center bg-white'>
       <div className='p-10'>
         <h1>Todo</h1>
-        <TodoItems />
+        { todoItems &&
+          todoItems.map((todoItem) => {
+            return(
+              <TodoRow 
+                key={todoItem.id} 
+                todoItem={todoItem} 
+                toggleCompleted={toggleCompleted}
+                deleteTodo={deleteTodo} 
+              />
+            )
+          })
+        }
       </div>
       <AddTodo addTodo={addTodo} />
     </main>
-  )
-}
-
-function TodoItems(){
-
-
-  return (
-    <div>
-      items
-    </div>
   )
 }
