@@ -17,7 +17,7 @@ function Button({variant, onButtonClick, children}: ButtonPropsT) {
     }else if(variant === "small"){
         return (
             <button 
-                className="px-3 py-1 flex items-center justify-center text-white bg-accent hover:bg-accent/80 rounded-lg "
+                className="px-3 py-1 flex items-center justify-center text-white bg-accent hover:bg-[#339253] rounded-lg "
                 onClick={() =>onButtonClick()}
             >
                 {children}

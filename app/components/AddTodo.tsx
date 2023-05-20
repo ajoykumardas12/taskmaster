@@ -41,7 +41,7 @@ function AddTodo({addTodo}: AddTodoPropsT) {
                 id="" 
                 placeholder="Add task here..."
                 autoComplete="off"
-                className="bg-inputBg p-2 rounded"
+                className="bg-inputBg p-2 w-52 min-[400px]:w-full outline-accent rounded"
                 ref={inputRef}
             />
             <Button variant="big" onButtonClick={() => handleSubmit} >

@@ -50,7 +50,7 @@ export default function Home() {
       <div className='bg-white mt-5 rounded'>
         <div className='p-5'>
           <h1 className='text-2xl font-semibold'>Todos</h1>
-          <div className='flex flex-col gap-2 mt-5 w-full sm:w-[28rem]'>
+          <div className='flex flex-col gap-2 mt-5 w-11/12 sm:w-[28rem]'>
             { todoItems &&
               todoItems.map((todoItem) => {
                 return(
